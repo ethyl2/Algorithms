@@ -13,6 +13,20 @@ def fib(n, cache=None):
         # Recursive call, should move toward base case
         return answer
 
+# Cache version from TK
+
+
+def fib_TK(n, cache=None):
+    if n < 2:
+        return n
+    elif cache and cache[n] > 0:
+        return cache[n]
+    else:
+        if not cache:
+            cache = {i: 0 for i in range(n+1)}
+        cache[n] = fib(n-1, cache) + fib(n-2, cache)
+        return cache[n]
+
 
 def fib_non_recursive(n):
     # More space efficient than using recursion
@@ -20,3 +34,16 @@ def fib_non_recursive(n):
     for i in range(3, n+1):
         fib_arr[i] = fib_arr[i-1] + fib_arr[i-2]
     return fib_arr[n]
+
+# From TK:
+
+
+def iter_fib(n):
+    answer = 0
+    prev = 1
+    prevPrev = 0
+    for i in range(n - 1):
+        answer = prev + prevPrev
+        prevPrev = prev
+        prev = answer
+    return answer
