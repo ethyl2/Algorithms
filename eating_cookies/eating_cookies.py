@@ -17,8 +17,10 @@ def eating_cookies(n, cache=None):
     if cache == None:
         #cache = dict()
         cache = [0 for i in range(n+1)]
+        # print(cache)
     # if n in cache.keys():
     if cache[n] != 0:
+        # print('using the cache!')
         return cache[n]
     elif n <= 0:
         return 1
@@ -30,7 +32,7 @@ def eating_cookies(n, cache=None):
         return 4
     else:
         result = eating_cookies(
-            n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+            n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
         cache[n] = result
         return result
 
