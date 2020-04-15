@@ -8,31 +8,34 @@ def rock_paper_scissors(n):
     # Output is a nested list. Inner lists are length n.
     # Output represents all of the possible plays that can be made in a game of length n.
     outcomes = ['rock', 'paper', 'scissors']
+    num_to_remove = 0
+    initial_n = n
     # Base cases
     if n == 0:
         return [[]]
     elif n == 1:
-        return [outcomes]
+        return [['rock'], ['paper'], ['scissors']]
     else:
-        return_arr = []
-        return helper(n, return_arr)
-    #  Define an inner recursive helper function that will perform the recursion
-    # You can pass results to the inner recursive helper so it can add to the overall results.
+        return_arr = [['rock'], ['paper'], ['scissors']]
 
+        while n > 1:
+            num_to_remove += len(return_arr)
+            for i in range(0, len(return_arr)):
+                for outcome in outcomes:
+                    return_arr.append(return_arr[i] + [outcome])
+            n -= 1
+    print("num_to_remove: ", num_to_remove)
+    # for i in range(0, num_to_remove):
+    #     del return_arr[0]
 
-def helper(n, arr):
-    outcomes = ['rock', 'paper', 'scissors']
-    # Base cases
-    if n == 0:
-        return arr
-    elif n == 1:
-        arr.append(outcomes)
-        return arr
-    else:
-        for item in arr:
-            for thing in outcomes:
-                item.append(thing)
-        return helper(n-1, arr)
+    final_arr = []
+    for i in range(0, len(return_arr)):
+        if len(return_arr[i]) == initial_n:
+            final_arr.append(return_arr[i])
+    print("LENGTH: ",  len(final_arr))
+    for item in final_arr:
+        print(item)
+    return final_arr
 
 
 if __name__ == "__main__":
