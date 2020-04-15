@@ -14,7 +14,13 @@ def eating_cookies(n, cache=None):
     # 10 -> 274
     # Base cases that we would want our recursive function to stop recursing on.
     # How many ways are there to eat 0 cookies? What about a negative number of cookies?
-    if n <= 0:
+    if cache == None:
+        #cache = dict()
+        cache = [0 for i in range(n+1)]
+    # if n in cache.keys():
+    if cache[n] != 0:
+        return cache[n]
+    elif n <= 0:
         return 1
     elif n == 1:
         return 1
@@ -23,7 +29,10 @@ def eating_cookies(n, cache=None):
     elif n == 3:
         return 4
     else:
-        return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+        result = eating_cookies(
+            n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+        cache[n] = result
+        return result
 
 
 if __name__ == "__main__":
