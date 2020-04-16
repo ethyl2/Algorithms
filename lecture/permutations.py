@@ -12,6 +12,7 @@ def permutations(arr):
         # Get permutations where current_item is the first element
         for p in permutations(remaining):
             # print("P: ", p)
+            # Stick current_item on each of the results
             return_arr.append([current_item] + p)
             # print("RETURN_ARR: ", return_arr)
     return return_arr
