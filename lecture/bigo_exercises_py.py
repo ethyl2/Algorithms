@@ -1,6 +1,8 @@
 
 # Time: O(n)
 # Space: O(1)
+
+
 def foo(n):
     # Loop and print
     for i in range(n):  # Range takes up O(1) space
@@ -35,6 +37,8 @@ def foo(n):
 
 # Time: O(n)
 # Space: O(1)
+
+
 def foo(n):
     # Loop and print
     for i in range(n):
@@ -49,6 +53,8 @@ def foo(n):
 
 # Time: O(n^2)
 # Space: O(1)
+
+
 def foo(n):
     # Loop and print
     for i in range(n):
@@ -63,6 +69,8 @@ def foo(n):
 
 # Time: O(n)
 # Space: O(1)
+
+
 def foo(n):
     i = 0
     while i < n:
@@ -70,7 +78,7 @@ def foo(n):
         i += 1
 
 
-# Time: O(n)
+# Time: O(n) --> Simplified from O(n/2)
 # Space: O(1)
 def foo(n):
     i = 0
@@ -81,13 +89,14 @@ def foo(n):
 
 # Time: O(log n)
 # Space: O(1)
+
+
 def foo(n):
     i = 0
     while i < n:
         print(i)
         i += 1
         n /= 2
-
 
 
 def foo(n):
@@ -115,19 +124,25 @@ def foo(n):
         foo(n-1)
         foo(n-1)
 
+
 counter = 0
+
+
 def foo(n):
     for i in range(n):
         foo(i)
+
 
 foo(10)
 print(counter)
 
 
 counter = 0
+
+
 def factorial(n):
-  global counter
-  for each in range(n):
-    print(n)
-    counter += 1
-    factorial(n-1)
+    global counter
+    for each in range(n):
+        print(n)
+        counter += 1
+        factorial(n-1)
