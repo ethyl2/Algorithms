@@ -13,7 +13,9 @@ def fib(n, cache=None):
         # Recursive call, should move toward base case
         return answer
 
+
 # Cache version from TK
+print(fib(4))
 
 
 def fib_TK(n, cache=None):
@@ -36,6 +38,13 @@ def fib_non_recursive(n):
     return fib_arr[n]
 
 # From TK:
+
+
+'''
+An important observation here is that for any input n to our nth Fib function, 
+we only need to keep track of the results of fib(n - 1) and fib(n - 2). 
+We don’t need any other results for figuring out the nth Fib number.
+'''
 
 
 def iter_fib(n):
