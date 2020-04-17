@@ -8,10 +8,10 @@ def find_string(str1, str2):
     if len(str1) == 0 or (len(str1) < len(str2)):
         return 0
     elif str1[:len(str2)] == str2:
-        return find_string(str1[1:], str2) + 1
+        return find_string(str1[len(str2) - 1:], str2) + 1
     else:
         return find_string(str1[1:], str2)
 
 
-print(find_string('happybirthdaytoyou', 'birthday'))
+print(find_string('happy birthday to you', 'birthday'))
 print(find_string('ththth', 'th'))
