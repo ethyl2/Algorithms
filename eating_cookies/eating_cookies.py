@@ -2,7 +2,7 @@
 
 import sys
 
-# The cache parameter is here for if you want to implement
+# The cache parameter is here for to implement
 # a solution that is more efficient than the naive
 # recursive solution
 
@@ -15,7 +15,7 @@ def eating_cookies(n, cache=None):
     # Base cases that we would want our recursive function to stop recursing on.
     # How many ways are there to eat 0 cookies? What about a negative number of cookies?
     if cache == None:
-        #cache = dict()
+        # cache will be a list, in order for tests to run correctly
         cache = [0 for i in range(n+1)]
         # print(cache)
     # if n in cache.keys():
