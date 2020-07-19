@@ -126,32 +126,55 @@ def sliding_window_max4(arr, k):
 
 # print(sliding_window_max4([1, 3, -1, -3, 5, 3, 6, 7], 3))
 
-
+# Here's my latest version, based on Hui's.
+# It populates variables initially to hold the max_value and its index,
+#  and then the function only has to do 2 main checks:
+#   1. To see if the max_value is outside the window. (If so, it finds the new max_value.)
+#   2. Or to see if the right-most value of the window is larger than the current max_value.
+#       (If so, it sets that value as the current max_value.)
 def sliding_window_max(arr, k):
+
+    # Set up variables to hold the output list, & the current max value and its index.
     max_nums = []
     max_value = arr[0]
     max_value_index = 0
 
+    # Before beginning the main loop that follows after this one,
+    # look at the rest of the values in the 1st window
+    #  to make sure we've got the largest one saved as max_value.
     for i in range(1, k):
         if arr[i] > max_value:
             max_value = arr[i]
             max_value_index = i
 
+    # Now we loop through the windows.
+    # The variable i will be the left-most index of each window.
     for i in range(len(arr) - k + 1):
+
+        # If we've progressed past the max_value's index,
+        #   the current max_value is no longer a valid contender for this window.
+        # It's time to get rid of it and set max_value to be the value at i.
         if i > max_value_index:
             max_value = arr[i]
             max_value_index = i
 
+            # But before continuing on, check the rest of the window to make sure
+            # we've got the largest value.
             for j in range(i + 1, i + k):
                 if arr[j] > max_value:
                     max_value = arr[j]
                     max_value_index = j
 
+        # This looks at the right-most value of the window
+        #   and checks it against the max_value.
+        # If it's larger, set it as the new max_value.
         elif arr[i + k - 1] > max_value:
             max_value = arr[i + k - 1]
             max_value_index = i + k - 1
 
+        # Before progressing the window, add the current max_num to the output.
         max_nums.append(max_value)
+
     return max_nums
 
 
