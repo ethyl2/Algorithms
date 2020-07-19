@@ -31,7 +31,7 @@ def sliding_window_max1(nums, k):
 
 # This solution from the solutions repo is O(n) time and space.
 
-def sliding_window_max(nums, k):
+def sliding_window_max2(nums, k):
     # This is the queue to hold the current max numbers as we traverse the nums list.
     q = deque()
 
@@ -70,4 +70,89 @@ def sliding_window_max(nums, k):
     return max_nums
 
 
-print(sliding_window_max([1, 3, -1, -3, 5, 3, 6, 7], 3))
+# print(sliding_window_max2([1, 3, -1, -3, 5, 3, 6, 7], 3))
+
+
+# Adapted from Hui's solution.
+# It passes the large_input test.
+def sliding_window_max3(arr, k):
+    max_nums = []
+    max_value = None
+    max_value_index = None
+    for i in range(len(arr) - k + 1):
+        if max_value is None:
+            for j in range(i, i + k):
+                if max_value is None or arr[j] > max_value:
+                    max_value = arr[j]
+                    max_value_index = j
+        elif arr[i + k - 1] > max_value:
+            max_value = arr[i + k - 1]
+            max_value_index = i + k - 1
+        elif i > max_value_index:
+            max_value = None
+            max_value_index = None
+            for j in range(i, i+k):
+                if max_value is None or arr[j] > max_value:
+                    max_value = arr[j]
+                    max_value_index = j
+        max_nums.append(max_value)
+    return max_nums
+
+
+# print(sliding_window_max3([1, 3, -1, -3, 5, 3, 6, 7], 3))
+
+# This version reorders things a bit.
+# It checks to see if the max_value is outside the current window first.
+def sliding_window_max4(arr, k):
+    max_nums = []
+    max_value = None
+    max_value_index = None
+    for i in range(len(arr) - k + 1):
+        if max_value_index and i > max_value_index:
+            max_value = None
+            max_value_index = None
+        if max_value is None:
+            for j in range(i, i + k):
+                if max_value is None or arr[j] > max_value:
+                    max_value = arr[j]
+                    max_value_index = j
+        elif arr[i + k - 1] > max_value:
+            max_value = arr[i + k - 1]
+            max_value_index = i + k - 1
+
+        max_nums.append(max_value)
+    return max_nums
+
+
+# print(sliding_window_max4([1, 3, -1, -3, 5, 3, 6, 7], 3))
+
+
+def sliding_window_max(arr, k):
+    max_nums = []
+    max_value = arr[0]
+    max_value_index = 0
+
+    for i in range(1, k):
+        if arr[i] > max_value:
+            max_value = arr[i]
+            max_value_index = i
+
+    for i in range(len(arr) - k + 1):
+        if i > max_value_index:
+            max_value = arr[i]
+            max_value_index = i
+
+            for j in range(i + 1, i + k):
+                if arr[j] > max_value:
+                    max_value = arr[j]
+                    max_value_index = j
+
+        elif arr[i + k - 1] > max_value:
+            max_value = arr[i + k - 1]
+            max_value_index = i + k - 1
+
+        max_nums.append(max_value)
+    return max_nums
+
+
+# print(sliding_window_max([1, 3, -1, -3, 5, 3, 6, 7], 3))
